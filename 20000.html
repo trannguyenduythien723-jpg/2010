@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Vietnamese Women's Day 20/10</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;width:100%;height:100%;overflow:hidden}
+  body{
+    font-family:Georgia,"Times New Roman",serif;
+    color:#fff;
+    background:#061b4b;
+  }
+  #sky{position:fixed;inset:0;width:100%;height:100%;display:block}
+  .scene{
+    position:relative;z-index:1;height:100%;min-height:500px;width:100%;
+    display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+    overflow:hidden;text-align:center;
+    padding:clamp(24px,6vh,62px) 14px 0;
+  }
+  .heading{
+    opacity:0;transform:translateY(10px);
+    animation:showText 1.5s ease 1.1s forwards;
+    text-shadow:0 0 14px #a7dfff8c,0 2px 4px #03133c;
+    max-width:95vw;
+  }
+  .heading .small{font:600 clamp(10px,2.7vw,14px)/1.5 Arial,sans-serif;letter-spacing:3px;color:#d8f0ff}
+  h1{
+    font-size:clamp(25px,5.6vw,44px);line-height:1.2;font-weight:normal;
+    margin:10px 0 6px;color:#fff0fa;font-style:italic;
+  }
+  .heading p{font-size:clamp(12px,2.8vw,16px);margin:0;color:#d7edff;letter-spacing:.5px}
+  .ground-glow{
+    position:absolute;bottom:12%;width:min(82vw,470px);height:70px;border-radius:50%;
+    background:#58b8ff31;filter:blur(28px);z-index:0;
+  }
+  .bouquet-wrap{
+    position:absolute;bottom:8%;left:50%;width:min(94vw,500px);height:min(65vh,530px);
+    transform:translateX(-50%);z-index:2;
+  }
+  .bouquet{
+    position:absolute;inset:0;transform-origin:50% 100%;
+    animation:bloom 4.2s cubic-bezier(.16,.72,.2,1) .2s both;
+  }
+  @keyframes bloom{
+    0%{transform:translateY(100px) scale(.05);opacity:0}
+    45%{opacity:1}
+    72%{transform:translateY(-9px) scale(1.04)}
+    100%{transform:translateY(0) scale(1);opacity:1}
+  }
+  .stem{
+    position:absolute;bottom:15%;left:50%;height:47%;width:5px;
+    transform:translateX(-50%);border-radius:8px;
+    background:linear-gradient(90deg,#14513b,#8bdc87,#246447);
+    box-shadow:0 0 9px #55e59d40;
+  }
+  .leaf{
+    position:absolute;width:22%;height:8%;background:linear-gradient(140deg,#8be99b,#23774e 75%);
+    border-radius:100% 0 100% 0;box-shadow:inset 0 2px 4px #d6ffd344;
+  }
+  .leaf:after{content:"";position:absolute;left:8%;top:55%;width:85%;height:1px;background:#e3ffd877;transform:rotate(-15deg)}
+  .leaf.l1{left:24%;bottom:27%;transform:rotate(15deg)}
+  .leaf.l2{right:22%;bottom:32%;transform:scaleX(-1) rotate(18deg)}
+  .leaf.l3{left:35%;bottom:18%;transform:rotate(-12deg) scale(.8)}
+  .wrapper{
+    position:absolute;left:50%;bottom:1%;transform:translateX(-50%);
+    width:55%;height:34%;clip-path:polygon(5% 0,95% 0,72% 100%,28% 100%);
+    background:linear-gradient(100deg,#f2d9ff,#fff5fd 23%,#d6c2ff 51%,#fff2fc 77%,#b7c9ff);
+    filter:drop-shadow(0 10px 10px #06103977);
+  }
+  .wrapper:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 25%,#fff9 26%,transparent 30%,transparent 68%,#fff9 69%,transparent 73%)}
+  .ribbon{
+    position:absolute;left:50%;bottom:15%;transform:translateX(-50%);
+    width:20%;height:6%;border-radius:50%;border:8px solid #e68bdc;
+    border-left-color:#ffdbfa;border-bottom-color:#b958bd;z-index:5;
+  }
+  .ribbon:before,.ribbon:after{content:"";position:absolute;top:55%;width:55%;height:150%;background:linear-gradient(90deg,#b95fbd,#f8b6ed);clip-path:polygon(0 0,100% 0,78% 100%,35% 75%);z-index:-1}
+  .ribbon:before{right:65%;transform:rotate(10deg)}
+  .ribbon:after{left:65%;transform:scaleX(-1) rotate(10deg)}
+  .flower{
+    position:absolute;width:22%;aspect-ratio:1;left:50%;top:35%;
+    transform:translate(-50%,-50%);filter:drop-shadow(0 4px 6px #10204c60);
+    animation:sway 4s ease-in-out infinite;
+  }
+  .flower:nth-of-type(odd){animation-delay:-1.5s}
+  @keyframes sway{0%,100%{rotate:-2deg}50%{rotate:2deg}}
+  .flower .petal{
+    position:absolute;left:50%;top:50%;width:33%;height:47%;
+    transform-origin:50% 85%;border-radius:60% 60% 48% 48%;
+    background:linear-gradient(145deg,#fff0ff 0%,#ffb9f0 35%,#f274d1 68%,#c447b5 100%);
+    border:1px solid #ffe8ffb5;box-shadow:inset -4px -4px 6px #9d329b33,inset 3px 3px 6px #fff9;
+  }
+  .flower .petal:nth-child(1){transform:translate(-50%,-85%) rotate(0)}
+  .flower .petal:nth-child(2){transform:translate(-50%,-85%) rotate(45deg)}
+  .flower .petal:nth-child(3){transform:translate(-50%,-85%) rotate(90deg)}
+  .flower .petal:nth-child(4){transform:translate(-50%,-85%) rotate(135deg)}
+  .flower .petal:nth-child(5){transform:translate(-50%,-85%) rotate(180deg)}
+  .flower .petal:nth-child(6){transform:translate(-50%,-85%) rotate(225deg)}
+  .flower .petal:nth-child(7){transform:translate(-50%,-85%) rotate(270deg)}
+  .flower .petal:nth-child(8){transform:translate(-50%,-85%) rotate(315deg)}
+  .flower .core{
+    position:absolute;left:50%;top:48%;width:25%;aspect-ratio:1;border-radius:50%;
+    transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 25%,#fff1a9,#ffbd67 55%,#e77893);
+    box-shadow:0 0 10px #fff1b8aa;
+  }
+  .f1{left:27%;top:29%;width:20%;animation-delay:-.5s}
+  .f2{left:44%;top:19%;width:22%;animation-delay:-1.2s}
+  .f3{left:62%;top:25%;width:21%;animation-delay:-2s}
+  .f4{left:76%;top:36%;width:18%;animation-delay:-.8s}
+  .f5{left:17%;top:43%;width:17%;animation-delay:-1.8s}
+  .f6{left:36%;top:39%;width:20%;animation-delay:-2.4s}
+  .f7{left:56%;top:40%;width:20%;animation-delay:-.3s}
+  .f8{left:71%;top:48%;width:17%;animation-delay:-1.4s}
+  .f9{left:48%;top:48%;width:18%;animation-delay:-2.8s}
+  .f10{left:31%;top:51%;width:16%;animation-delay:-.9s}
+  .f11{left:62%;top:54%;width:16%;animation-delay:-1.7s}
+  .button-row{
+    position:absolute;bottom:3%;z-index:10;display:flex;gap:9px;justify-content:center;flex-wrap:wrap;
+    width:100%;padding:0 12px;
+  }
+  button{
+    border:1px solid #d8eeff88;border-radius:999px;padding:11px 15px;
+    color:#fff;background:#0d327a9c;backdrop-filter:blur(8px);
+    font:600 12px Arial,sans-serif;cursor:pointer;box-shadow:0 4px 18px #00102f55;
+  }
+  button:hover{background:#2259a9}
+  @keyframes showText{
+    0%{opacity:0;transform:translateY(10px)}
+    100%{opacity:1;transform:translateY(0)}
+  }
+</style>
+</head>
+<body>
+<canvas id="sky"></canvas>
+<main class="scene">
+  <header class="heading">
+    <div class="small">A little gift made with love</div>
+    <h1>Happy Vietnamese<br>Women's Day 20/10</h1>
+    <p>Gửi ngàn yêu thương đến những người phụ nữ tuyệt vời 🌷</p>
+  </header>
+
+  <div class="ground-glow"></div>
+  <div class="bouquet-wrap">
+    <div class="bouquet" id="bouquet">
+      <div class="stem"></div>
+      <div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div>
+      <div class="flower f1"></div><div class="flower f2"></div><div class="flower f3"></div>
+      <div class="flower f4"></div><div class="flower f5"></div><div class="flower f6"></div>
+      <div class="flower f7"></div><div class="flower f8"></div><div class="flower f9"></div>
+      <div class="flower f10"></div><div class="flower f11"></div>
+      <div class="wrapper"></div><div class="ribbon"></div>
+    </div>
+  </div>
+
+  <div class="button-row">
+    <button id="growBtn" type="button">🌸 Làm hoa nở lại</button>
+  </div>
+</main>
+<script>
+(function(){
+  "use strict";
+  var flowers=document.querySelectorAll(".flower");
+  flowers.forEach(function(f){
+    for(var i=0;i<8;i++){var p=document.createElement("i");p.className="petal";f.appendChild(p);}
+    var core=document.createElement("b");core.className="core";f.appendChild(core);
+  });
+
+  var canvas=document.getElementById("sky"),ctx=canvas.getContext("2d");
+  var w=0,h=0,dpr=1,stars=[],flakes=[];
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);w=window.innerWidth;h=window.innerHeight;
+    canvas.width=Math.floor(w*dpr);canvas.height=Math.floor(h*dpr);
+    canvas.style.width=w+"px";canvas.style.height=h+"px";
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    stars=[];flakes=[];
+    for(var i=0;i<Math.floor(w*h/7000);i++)stars.push({x:Math.random()*w,y:Math.random()*h*.82,r:.5+Math.random()*1.5,a:Math.random()*6.28,s:.01+Math.random()*.025});
+    for(var j=0;j<42;j++)flakes.push({x:Math.random()*w,y:Math.random()*h,r:1.5+Math.random()*3,vy:.35+Math.random()*.8,vx:(Math.random()-.5)*.5,a:.25+Math.random()*.6,rot:Math.random()*6.28});
+  }
+  function mountain(points,color){
+    ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(0,h);
+    points.forEach(function(pt){ctx.lineTo(pt[0]*w,pt[1]*h);});
+    ctx.lineTo(w,h);ctx.closePath();ctx.fill();
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    var sky=ctx.createLinearGradient(0,0,0,h);
+    sky.addColorStop(0,"#0757b9");sky.addColorStop(.48,"#187bcf");sky.addColorStop(.78,"#164d9b");sky.addColorStop(1,"#071b50");
+    ctx.fillStyle=sky;ctx.fillRect(0,0,w,h);
+    var glow=ctx.createRadialGradient(w*.5,h*.52,5,w*.5,h*.52,Math.max(w,h)*.62);
+    glow.addColorStop(0,"#77cfff44");glow.addColorStop(1,"#06164200");
+    ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);
+    
+    ctx.beginPath();ctx.arc(w*.82,h*.16,Math.min(w,h)*.055,0,Math.PI*2);ctx.fillStyle="#d9f1ff35";ctx.fill();
+    ctx.beginPath();ctx.arc(w*.82,h*.16,Math.min(w,h)*.035,0,Math.PI*2);ctx.fillStyle="#e7f7ff77";ctx.fill();
+    stars.forEach(function(s){
+      s.a+=s.s;var alpha=.35+(.5+.5*Math.sin(s.a))*.6;
+      ctx.globalAlpha=alpha;ctx.fillStyle="#e7f6ff";ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();
+      if(s.r>1.5){ctx.fillRect(s.x-3,s.y-.45,6,.9);ctx.fillRect(s.x-.45,s.y-3,.9,6);}
+    });ctx.globalAlpha=1;
+    
+    mountain([[0,.68],[.12,.59],[.24,.66],[.39,.53],[.51,.65],[.68,.56],[.81,.64],[.92,.55],[1,.62]],"#0c347c");
+    mountain([[0,.75],[.16,.66],[.3,.72],[.45,.61],[.61,.71],[.78,.63],[.9,.7],[1,.64]],"#082963");
+    mountain([[0,.82],[.19,.74],[.32,.79],[.49,.7],[.66,.8],[.83,.72],[1,.78]],"#061e55");
+    
+    var land=ctx.createLinearGradient(0,h*.78,0,h);
+    land.addColorStop(0,"#0a3d75");land.addColorStop(1,"#031337");
+    ctx.fillStyle=land;ctx.fillRect(0,h*.78,w,h*.22);
+    
+    flakes.forEach(function(f){
+      f.y+=f.vy;f.x+=f.vx;f.rot+=.012;
+      if(f.y>h+10){f.y=-10;f.x=Math.random()*w;}
+      if(f.x<0)f.x=w;if(f.x>w)f.x=0;
+      ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.rot);ctx.globalAlpha=f.a;
+      ctx.fillStyle="#d8f2ff";ctx.beginPath();ctx.ellipse(0,0,f.r*.6,f.r*1.25,0,0,Math.PI*2);ctx.fill();ctx.restore();
+    });
+    ctx.globalAlpha=1;requestAnimationFrame(draw);
+  }
+
+  document.getElementById("growBtn").addEventListener("click",function(){
+    var b=document.getElementById("bouquet");
+    b.style.animation="none";void b.offsetWidth;b.style.animation="bloom 4.2s cubic-bezier(.16,.72,.2,1) both";
+  });
+  window.addEventListener("resize",resize);resize();draw();
+})();
+</script>
+</body>
+</html>
