@@ -1,0 +1,223 @@
+﻿from pathlib import Path
+
+html = r'''<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3b102b">
+  <title>Chúc mừng 20/10 🌹</title>
+  <style>
+    :root {
+      --wine: #4b1232;
+      --rose: #e94d7b;
+      --pink: #ffb5cc;
+      --cream: #fff5f7;
+      --gold: #f7d89b;
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; }
+    body {
+      margin: 0; min-height: 100vh; overflow-x: hidden;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--cream);
+      background:
+        radial-gradient(ellipse at 50% 20%, rgba(177,49,104,.45), transparent 43%),
+        linear-gradient(145deg, #180b20, #3b102b 58%, #160b1e);
+    }
+    #sky { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .page {
+      position: relative; z-index: 1; min-height: 100vh;
+      display: grid; place-items: center; padding: 24px 14px;
+    }
+    .card {
+      width: min(900px, 100%); text-align: center; position: relative;
+      padding: clamp(22px, 5vw, 48px);
+      border: 1px solid rgba(255,220,235,.24); border-radius: 28px;
+      background: rgba(255,255,255,.055);
+      box-shadow: 0 25px 80px rgba(0,0,0,.38), inset 0 0 35px rgba(255,255,255,.025);
+      backdrop-filter: blur(8px);
+    }
+    .topline { color: #ffd7e4; font: 11px/1.5 Arial, sans-serif; letter-spacing: 4px; text-transform: uppercase; }
+    h1 { margin: 14px 0 12px; font-size: clamp(34px, 7vw, 65px); line-height: 1.08; font-weight: normal; }
+    h1 span { color: var(--pink); font-style: italic; }
+    .intro { max-width: 610px; margin: 0 auto; color: #f5dce6; font: 14px/1.8 Arial, sans-serif; }
+    .bouquet-area { height: 340px; display: grid; place-items: center; position: relative; }
+    .halo { position: absolute; width: 280px; height: 240px; border-radius: 50%; background: #f5428240; filter: blur(45px); }
+    .bouquet { width: 310px; height: 320px; position: relative; animation: float 4s ease-in-out infinite; }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
+    .stem { position: absolute; left: 50%; top: 132px; width: 5px; height: 165px; background: linear-gradient(90deg,#17492f,#65ae68,#17492f); border-radius: 5px; }
+    .leaf { position: absolute; top: 205px; left: 91px; width: 70px; height: 31px; border-radius: 100% 0 100% 0; background: linear-gradient(135deg,#8fd58c,#1e7048); transform: rotate(20deg); }
+    .leaf:after { content: ""; position: absolute; left: 8px; top: 16px; width: 54px; height: 1px; background: #d6ffd17a; transform: rotate(-14deg); }
+    .leaf.right { left: 155px; top: 231px; transform: scaleX(-1) rotate(18deg); }
+    .leaf.low { left: 100px; top: 254px; transform: rotate(-20deg) scale(.8); }
+    .flower { position: absolute; width: 86px; height: 86px; left: 50%; top: 90px; transform: translate(-50%,-50%); filter: drop-shadow(0 6px 7px #17000a80); }
+    .f1 { left: 34%; top: 112px; transform: translate(-50%,-50%) scale(.83) rotate(-15deg); }
+    .f2 { left: 66%; top: 111px; transform: translate(-50%,-50%) scale(.85) rotate(15deg); }
+    .f3 { left: 23%; top: 153px; transform: translate(-50%,-50%) scale(.68) rotate(-22deg); }
+    .f4 { left: 77%; top: 152px; transform: translate(-50%,-50%) scale(.7) rotate(22deg); }
+    .f5 { left: 50%; top: 68px; transform: translate(-50%,-50%) scale(1.03); }
+    .f6 { left: 43%; top: 160px; transform: translate(-50%,-50%) scale(.7) rotate(-8deg); }
+    .f7 { left: 58%; top: 158px; transform: translate(-50%,-50%) scale(.72) rotate(10deg); }
+    .petal {
+      position: absolute; left: 50%; top: 50%; width: 34px; height: 47px;
+      border-radius: 70% 70% 48% 48%; transform-origin: 50% 85%;
+      background: linear-gradient(135deg,#ffc5d7,#ed4778 48%,#980d40);
+      border: 1px solid #ffe0ea55; box-shadow: inset -4px -5px 8px #680a3155, inset 4px 4px 6px #fff5;
+    }
+    .petal:nth-child(1) { transform: translate(-50%,-85%) rotate(0deg); }
+    .petal:nth-child(2) { transform: translate(-50%,-85%) rotate(45deg); }
+    .petal:nth-child(3) { transform: translate(-50%,-85%) rotate(90deg); }
+    .petal:nth-child(4) { transform: translate(-50%,-85%) rotate(135deg); }
+    .petal:nth-child(5) { transform: translate(-50%,-85%) rotate(180deg); }
+    .petal:nth-child(6) { transform: translate(-50%,-85%) rotate(225deg); }
+    .petal:nth-child(7) { transform: translate(-50%,-85%) rotate(270deg); }
+    .petal:nth-child(8) { transform: translate(-50%,-85%) rotate(315deg); }
+    .center { position: absolute; left: 50%; top: 48%; width: 28px; height: 28px; border-radius: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle at 35% 25%,#ffc7d9,#d72260 60%,#7d092f); }
+    .paper {
+      position: absolute; left: 50%; top: 180px; transform: translateX(-50%);
+      width: 160px; height: 124px; clip-path: polygon(7% 0,93% 0,75% 100%,25% 100%);
+      background: linear-gradient(100deg,#d991b1,#fff0f5 25%,#eeb6cf 52%,#fff0f5 77%,#ce7ca1);
+    }
+    .paper:after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg,transparent 35%,#fff9 36%,transparent 39%,transparent 65%,#fff8 66%,transparent 69%); }
+    .bow { position: absolute; z-index: 4; top: 268px; left: 50%; transform: translateX(-50%); width: 70px; height: 30px; border: 8px solid #c3235c; border-left-color: #ff8fb5; border-bottom-color: #86133e; border-radius: 50%; }
+    .bow:before,.bow:after { content:""; position:absolute; top: 12px; width: 40px; height: 44px; background: linear-gradient(100deg,#c51c58,#ff9bbd); clip-path: polygon(0 0,100% 0,75% 100%,35% 72%); z-index:-1; }
+    .bow:before { right: 25px; transform: rotate(12deg); }
+    .bow:after { left: 25px; transform: scaleX(-1) rotate(12deg); }
+    .wish { max-width: 720px; margin: 0 auto; font-size: clamp(17px,2.5vw,22px); line-height: 1.75; color: #fff0f5; }
+    .wish em { color: var(--pink); }
+    .signature { margin-top: 14px; font: 11px/1.7 Arial,sans-serif; letter-spacing: 2px; color: #f3c4d6; }
+    .actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 23px; }
+    button { font: 600 13px Arial,sans-serif; color: white; padding: 13px 18px; border-radius: 999px; border: 1px solid #ffd6e35c; background: linear-gradient(120deg,#b91e55,#ef6495); cursor: pointer; box-shadow: 0 8px 24px #c51f5b30; }
+    button:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    button.alt { background: #ffffff0d; }
+    .secret { display: none; max-width: 600px; margin: 20px auto 0; padding: 18px; border: 1px solid #ffc6d844; border-radius: 18px; background: #ffffff0b; color: #ffe8f0; font: 15px/1.8 Arial,sans-serif; }
+    .secret.visible { display: block; }
+    .foot { margin-top: 22px; color: #cba7b8; font: 10px Arial,sans-serif; letter-spacing: 2px; }
+    @media (max-width: 520px) {
+      .card { padding: 24px 15px 28px; border-radius: 22px; }
+      .topline { letter-spacing: 2px; font-size: 9px; }
+      .bouquet-area { height: 300px; }
+      .bouquet { transform: scale(.86); }
+      .intro { font-size: 12px; }
+      .foot { letter-spacing: 1px; }
+      @keyframes float { 0%,100% { transform: scale(.86) translateY(0) rotate(-1deg); } 50% { transform: scale(.86) translateY(-8px) rotate(1deg); } }
+    }
+  </style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<main class="page">
+  <section class="card">
+    <div class="topline">Một món quà nhỏ · Ngày 20 tháng 10</div>
+    <h1>Gửi những người phụ nữ<br><span>tuyệt vời của gia đình</span></h1>
+    <p class="intro">Bó hoa hồng này dành tặng bà, mẹ, chị, em và tất cả những người phụ nữ thân yêu — những người làm cho mái nhà luôn ấm áp bằng tình yêu thương của mình.</p>
+
+    <div class="bouquet-area">
+      <div class="halo"></div>
+      <div class="bouquet" role="img" aria-label="Bó hoa hồng đỏ được gói giấy hồng">
+        <div class="stem"></div><div class="leaf"></div><div class="leaf right"></div><div class="leaf low"></div>
+        <div class="flower f1"><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><b class="center"></b></div>
+        <div class="flower f2"><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><b class="center"></b></div>
+        <div class="flower f3"><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><b class="center"></b></div>
+        <div class="flower f4"><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><b class="center"></b></div>
+        <div class="flower f5"><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><b class="center"></b></div>
+        <div class="flower f6"><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><b class="center"></b></div>
+        <div class="flower f7"><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><b class="center"></b></div>
+        <div class="paper"></div><div class="bow"></div>
+      </div>
+    </div>
+
+    <p class="wish">Chúc bà, mẹ, chị và các em luôn <em>mạnh khỏe, vui vẻ, xinh tươi và bình an</em>. Mong mỗi ngày đều có thật nhiều niềm vui, luôn được trân trọng, yêu thương. Cảm ơn vì đã mang đến cho gia đình thật nhiều dịu dàng và hạnh phúc. 🌹</p>
+    <div class="signature">CHÚC MỪNG NGÀY PHỤ NỮ VIỆT NAM · 20/10</div>
+
+    <div class="actions">
+      <button id="petalButton" class="alt" 
+    </div>
+    <div id="secret" class="secret"></div>
+    <div class="foot">MADE WITH LOVE · FOR THE WOMEN WE CHERISH</div>
+  </section>
+</main>
+<script>
+(function () {
+  "use strict";
+  var canvas = document.getElementById("sky");
+  var ctx = canvas.getContext("2d");
+  var width = 0, height = 0, extraPetals = 0, petals = [];
+
+  function resizeCanvas() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    createPetals();
+  }
+
+  function createPetals() {
+    var count = Math.min(48 + extraPetals, 120);
+    petals = [];
+    for (var i = 0; i < count; i++) {
+      petals.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: 2 + Math.random() * 4,
+        speed: 0.5 + Math.random() * 1.2,
+        drift: (Math.random() - 0.5) * 0.8,
+        angle: Math.random() * Math.PI * 2,
+        spin: (Math.random() - 0.5) * 0.035,
+        alpha: 0.25 + Math.random() * 0.6
+      });
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    for (var i = 0; i < petals.length; i++) {
+      var p = petals[i];
+      p.y += p.speed;
+      p.x += Math.sin(p.y * 0.012) * 0.55 + p.drift;
+      p.angle += p.spin;
+      if (p.y > height + 12) { p.y = -12; p.x = Math.random() * width; }
+      if (p.x < -12) p.x = width + 12;
+      if (p.x > width + 12) p.x = -12;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.angle);
+      ctx.globalAlpha = p.alpha;
+      ctx.fillStyle = "#ff9fbd";
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.size * 0.65, p.size * 1.3, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    window.requestAnimationFrame(animate);
+  }
+
+  document.getElementById("openWish").addEventListener("click", function () {
+    var note = document.getElementById("secret");
+    note.classList.toggle("visible");
+    this.textContent = note.classList.contains("visible") ? ;
+  });
+
+  document.getElementById("petalButton").addEventListener("click", function () {
+    extraPetals = Math.min(extraPetals + 18, 72);
+    createPetals();
+    this.textContent = extraPetals >= 72 ? 
+  });
+
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+  animate();
+}());
+</script>
+</body>
+</html>'''
+
+out = Path("/mnt/data/loi_chuc_20_10_bouquet.html")
+out.write_text(html, encoding="utf-8-sig", newline="\n")
+print(f"Đã viết lại toàn bộ website và lưu tại: {out} ({out.stat().st_size} bytes). Mã hóa UTF-8 có BOM.")
